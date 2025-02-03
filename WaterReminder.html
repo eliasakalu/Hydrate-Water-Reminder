@@ -4,205 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Water Reminder!</title>
-    <style>
-        html
-        {
-            scroll-behavior: smooth;
-        }
-        h2
-        {
-            -webkit-text-stroke: 0.1px grey;
-            width: 435px;
-            color: green;
-            position: relative;
-        }
-        h2::before
-        {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            color: black;
-            -webkit-text-stroke: 0.9px black;
-            border-right: 2px solid black;
-            overflow: hidden;
-            animation: runner 4.5s linear infinite;
-            
-        }
-        @keyframes runner
-        {
-            0%,30%
-            {
-                width: 0%;
-            }
-            60%,90%
-            {
-                width: 100%
-            }
-           
-        }
-        
-        a
-        {
-            border: 1px solid;
-            background-color: black;
-            color: aliceblue;
-            text-decoration: none;
-            border-radius: 30px;
-            width: 100px;
-            height: 10px;
-            padding: 15px 30px;
-        }
-        #First a,#Second a
-        {
-            position: relative;
-            top: 80%;
-            left: 45%;
-        }
-        body
-        {
-            display: flex;
-            flex-wrap: wrap;
-        }
-        #Second,#First
-        {
-            width: 100%;
-            background-color: red;
-            height: 720px;
-        }
-        #First
-        {
-            background-color: yellow;
-        }
-        .Numbers
-        {
-            background-color: blue;
-            color: white;
-            display: grid;
-            grid-template-columns: repeat(3,1fr);
-            grid-template-rows:repeat(4,100px);
-            gap: 10px;
-            height: 450px;
-            width: 430px;
-            position: relative;
-            left:730px;
-            top: 115px;
-        
-        }
-        .value
-        {
-            height: 100px;
-            border: 2px solid;
-            border-radius: 5px;
-            background-color: black;
-            color: aliceblue;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            
-            
-        }
-        .value:hover
-        {
-            scale: 1.01;
-        }
-        .value7,.value8
-        {
-            grid-column: 1/4;
-           
-        }
-        .page01
-        {
-            background-color: grey;
-            width: 410px;
-            height: 415px;
-            border-radius: 4px;
-            position: relative;
-            left: 200px;
-            top: 95px;
-            display: grid;
-            grid-template-columns: repeat(3,133.3px);
-            grid-template-rows:repeat(4,100px) ;
-            gap: 5px;
-        }
-        .fr1
-        {
-            grid-column: 1/2;
-            grid-row:1/5 ;
-            border: 1px solid black;
-        }
-        .fr2
-        {
-            grid-column: 2/4;
-            grid-row:1/3 ;
-            border: 1px solid black;
-        }
-        .fr3
-        {
-            grid-column: 2/4;
-            grid-row:4/5 ;
-            border: 1px solid black;
-        }
-        .page001
-        {
-            background-color: grey;
-            width: 410px;
-            height: 415px;
-            border-radius: 4px;
-            position: relative;
-            left: 750px;
-            top: -320px;
-            display: grid;
-            grid-template-columns: 1fr;
-            grid-template-rows: 150px 150px 115px;
-            
-        }
-        .frr1
-        {
-            grid-row: 1/2;
-            background-color: green;
-        }
-        .frr2
-        {
-            grid-row: 2/3;
-            background-color: gray;
-        }
-        .frr3
-        {
-            grid-row: 3/4;
-            background-color: red;
-        }
-    </style>
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
-  <!-- <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script> -->
-  <!-- <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script> -->
-  <!-- <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script> -->
+    <link rel="stylesheet" href="WaterReminder.css">
+   <script src="WaterReminder.js"></script>
 </head>
 <body>
+   
     <div id="First">
+        <video autoplay muted loop plays-inline class="videoclip">
+            <source src="./New Project - Made with Clipchamp.mp4" type="video/mp4">
+        </video>
+        <div class="greeter">
+            <div id="Greeter">
+                <h1  data-text="Welcome" >Welcome</h1>
+            </div>
+            <div id="datetime">
+                <p  data-text="Time">
+
+                </p>
+            </div>
+            
+        </div>
         <a href="#Second">Next</a>
         <div class="page01">
-            <h1>Reminder </h1>
-            <h2>Get Some rest</h2>
+            <h1>Your Reminder </h1>
+            <h3>Get Some rest</h3>
             <div class="fr1"></div>
             <div class="fr2"></div>
-            <div class="fr3"></div>
+            <div class="fr3">
+                <button id="taskadder" popovertarget="task">
+                <svg   xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 419 511.67"><path d="M314.98 303.62c57.47 0 104.02 46.59 104.02 104.03 0 57.47-46.58 104.02-104.02 104.02-57.47 0-104.02-46.58-104.02-104.02 0-57.47 46.58-104.03 104.02-104.03zM41.73 59.27h23.93v24.38H41.73c-4.54 0-8.7 1.76-11.8 4.61l-.45.49c-3.14 3.13-5.1 7.48-5.1 12.24v315.53c0 4.75 1.96 9.1 5.1 12.24 3.13 3.15 7.48 5.11 12.25 5.11h142.62c1.68 8.44 4.17 16.6 7.36 24.38H41.73c-11.41 0-21.86-4.71-29.42-12.26C4.72 438.44 0 427.99 0 416.52V100.99c0-11.48 4.7-21.92 12.25-29.47l.79-.72c7.5-7.13 17.62-11.53 28.69-11.53zm297.55 217.37V100.99c0-4.74-1.96-9.09-5.12-12.24-3.11-3.15-7.47-5.1-12.24-5.1h-23.91V59.27h23.91c11.45 0 21.86 4.72 29.42 12.26 7.61 7.56 12.32 18.02 12.32 29.46V283.6c-7.79-3.06-15.95-5.41-24.38-6.96zm-206.75-8.07c-7.13 0-12.92-5.79-12.92-12.92s5.79-12.93 12.92-12.93h142.83c7.13 0 12.92 5.8 12.92 12.93s-5.79 12.92-12.92 12.92H132.53zM89.5 241.22c7.98 0 14.44 6.46 14.44 14.44 0 7.97-6.46 14.43-14.44 14.43-7.97 0-14.44-6.46-14.44-14.43 0-7.98 6.47-14.44 14.44-14.44zm0 78.62c7.98 0 14.44 6.46 14.44 14.44 0 7.97-6.46 14.43-14.44 14.43-7.97 0-14.44-6.46-14.44-14.43 0-7.98 6.47-14.44 14.44-14.44zm43.04 27.35c-7.13 0-12.93-5.79-12.93-12.92s5.8-12.93 12.93-12.93h80.96a133.608 133.608 0 0 0-17.26 25.85h-63.7zM89.5 162.6c7.98 0 14.44 6.46 14.44 14.44 0 7.98-6.46 14.44-14.44 14.44-7.97 0-14.44-6.46-14.44-14.44 0-7.98 6.47-14.44 14.44-14.44zm43.03 27.37c-7.13 0-12.92-5.8-12.92-12.93s5.79-12.92 12.92-12.92h142.83c7.13 0 12.92 5.79 12.92 12.92s-5.79 12.93-12.92 12.93H132.53zM93 39.4h46.13C141.84 17.18 159.77 0 181.52 0c21.62 0 39.45 16.95 42.34 38.94l46.76.46c2.61 0 4.7 2.09 4.7 4.71v51.84c0 2.6-2.09 4.7-4.7 4.7H93.05c-2.56 0-4.71-2.1-4.71-4.7V44.11A4.638 4.638 0 0 1 93 39.4zm88.03-19.25c12.3 0 22.26 9.98 22.26 22.27 0 12.3-9.96 22.26-22.26 22.26-12.29 0-22.26-9.96-22.26-22.26 0-12.29 9.97-22.27 22.26-22.27zm118.39 346.9c-.04-4.59-.46-7.86 5.23-7.79l18.45.23c5.95-.04 7.53 1.86 7.46 7.43v25.16h25.02c4.59-.03 7.86-.46 7.78 5.24l-.22 18.44c.03 5.96-1.86 7.54-7.43 7.48h-25.15v25.14c.07 5.57-1.51 7.46-7.46 7.43l-18.45.22c-5.69.09-5.27-3.2-5.23-7.79v-25h-25.16c-5.59.06-7.47-1.52-7.44-7.48l-.22-18.44c-.09-5.7 3.2-5.27 7.79-5.24h25.03v-25.03z"/></svg>
+                </button>
+               
+            </div>
         </div>
+        <div popover id="task">
+            <ul>
+               
+            </ul>
+            <form action="">
+                <input id="texts" type="text" placeholder="Enter Your Plan Here!">
+                <input id="textsbutton"type="button" value="Add">
+                <button id="exit2">Close</button>
+            </form>
+        </div>
+        
         <div class="page001">
             <div class="frr1">
-                <h2 data-text="Don't Forget To Be Purched">Don't Forget To Be Purched</h2>
+                <h1>Betz Website!</h1>
+                <!-- <h2 data-text="Don't Forget To Be Quenched" >Don't Forget To Be Purched</h2> -->
             </div>
-            <div class="frr2"></div>
+            <div class="frr2">
+                <p>
+                    Remember: Water is Life. Each drop counts. Stay hydrated, cherish water, and ensure its cleanliness for future generations.
+                </p>
+                <a id="readmore" href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/water/art-20044256">
+                   <em> Read More </em>
+                </a>
+            </div>
             <div class="frr3"></div>
         </div>
     </div>
     
     <div id="Second">
         <a href="#First">Back</a>
+        <div class="bottle"><img src="rb_26072.png" alt="water" width="600px"></div>
+        
         <div class="Numbers">
             <button class="value value1" id="hallo">2 Liters</button>
             <button class="value value2">3 Liters</button>
@@ -212,35 +78,43 @@
             <button class="value value6">7 Liters</button>
             <button class="value value7">Custom Liters</button>
             <button class="value value8" popovertarget="sent">Set my Liter</button>
-        </div>
+           </div>
+        
     </div>
     
-    <script>
-        element=document.getElementsByClassName("hallo");
-        element:addEventListener("click",liter)
-        function liter()
-        {
-            document.getElementById("svg").innerHTML=2;
+    <div class="footer">
+        <div class="founder">
+            <img src="./cropped-DSC_2765-Photoroom (1).jpg" alt="Elias' Picture" width="80px">
             
-        }
-    </script>
+        </div>
+    <div class="footer_detail">
+        <h2>Elias Akalu</h2>
+        <h3>This Project Builder</h3>
+        <a href="mailto:esmailoumerjemal@gmail.com">Contact Me!</a>
+        </div>
+    </div> 
+    <!-- <div popover id="sent2"></div> -->
     
     <div popover id="sent">
-    <form action="https://formsubmit.co/eliasgetachew800@gmail.com" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <form action="https://formsubmit.co/eliasgetachew950@gmail.com" method="POST">
+        <label for="message">Weber Water Reminder:</label>
+        <label for="name"></label>
+        <!-- <input type="text" id="name" name="name" required><br><br> -->
+        <textarea id="message2" name="message" rows="1" >Weber Website</textarea><br><br>
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
 
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="1" required>Don't forget to drink water</textarea><br><br>
+        
+        
 
         <button type="submit">Send</button>
+        <button type="button" popovertarget="sent" id="exit">Close</button>
+        
     </form>
-</div>
+    </div>
     
-
+     
     
 
 </body>
