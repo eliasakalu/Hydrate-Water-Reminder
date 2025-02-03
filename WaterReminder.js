@@ -1,92 +1,124 @@
-let user = 0; // Default value
-const liters = [2, 3, 4, 5, 6, 7, user];
+var user = 9;
+const litters = [2, 3, 4, 5, 6, 7, user];
 
-function openPopUp(liters) {
-    document.querySelector("#message2").textContent = `Hello! You Set ${liters} Liters of Water! Don't forget to do it today`;
-    const message = document.querySelector("#sent");
-    message.showPopover(); // Show the popup
-
-    // Close button functionality
-    document.querySelector("#exit").addEventListener("click", () => {
-        message.hidePopover(); // Hide the popup
+function openPopUp() {
+    document.querySelector("#message2").innerHTML = `Hello! You Set ${user} Litter Water! Don't forget to do it today`;
+    document.querySelector('.value8').addEventListener("click", () => {
+        const message = document.querySelector("#sent");
+        message.id = "sent2";
+        const close = document.querySelector("#exit");
+        close.addEventListener("click", () => {
+            message.id = "sent";
+        });
     });
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    // Time Display (Greeting Based on Time of Day)
-    function updateClock() {
+document.addEventListener("DOMContentLoaded", function() {
+    function updateclock() {
         const now = new Date();
         const hours = now.getHours();
-        const greeting = hours >= 5 && hours < 12 ? "Good Morning" :
-                         hours >= 12 && hours < 18 ? "Good Afternoon" : "Good Evening";
-        document.querySelector("#datetime").textContent = greeting;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // Task Popup Functionality
-    const taskContainer = document.querySelector("#task");
-    const taskAdderButton = document.querySelector("#taskadder");
-
-    // Show the task container when the "Add Task" button is clicked
-    taskAdderButton.addEventListener("click", (event) => {
-        event.stopPropagation(); // Prevent the document click event from closing the container
-        taskContainer.style.display = "block";
-    });
-
-    // Hide the task container when clicking outside of it
-    document.addEventListener("click", () => {
-        taskContainer.style.display = "none";
-    });
-
-    // Prevent the task container from closing when clicking inside it
-    taskContainer.addEventListener("click", (event) => {
-        event.stopPropagation();
-    });
-
-    // Add Task Button
-    document.querySelector("#textsbutton").addEventListener("click", () => {
-        const taskText = document.querySelector("#texts").value.trim();
-        if (taskText) {
-            const newTask = document.createElement("li");
-            newTask.textContent = taskText;
-            const removeButton = document.createElement("button");
-            removeButton.textContent = "Remove";
-            removeButton.classList.add("remove-task");
-
-            // Append the remove button to the task item
-            newTask.appendChild(removeButton);
-            document.querySelector("#task ul").appendChild(newTask);
-
-            // Clear the input field
-            document.querySelector("#texts").value = "";
-
-            // Add event listener to remove task
-            removeButton.addEventListener("click", () => {
-                newTask.remove();
-            });
-
-            // Hide the task container after adding task
-            taskContainer.style.display = "none";
+        const currenttime = now.toLocaleString();
+        if (hours >= 5 && hours < 12) {
+            document.querySelector("#datetime").textContent = "Good Morning";
+        } else if (hours >= 12 && hours < 18) {
+            document.querySelector("#datetime").textContent = "Good Afternoon";
         } else {
-            alert("Please enter a task!");
+            document.querySelector("#datetime").textContent = "Good Evening";
         }
-    });
+    }
+    setInterval(updateclock, 1000);
+    updateclock();
 
-    // Close button functionality
-    document.querySelector("#exit2").addEventListener("click", () => {
-        taskContainer.style.display = "none";
-    });
+    document.addEventListener("DOMContentLoaded", function() {
+        const taskContainer = document.querySelector("#task");
+        const taskAdderButton = document.querySelector("#taskadder");
 
-    // Water Liters Settings (Buttons)
-    document.querySelectorAll('.value').forEach((button, index) => {
-        button.addEventListener("click", () => {
-            if (index === 6) { // Custom Liters button
-                user = parseInt(prompt("How many liters do you want to set?"), 10) || 0;
-            } else {
-                user = liters[index]; // Set liters based on the button index
-            }
-            openPopUp(user); // Open the popup with the selected liters
+        // Show the task container when the "Add Task" button is clicked
+        taskAdderButton.addEventListener("click", () => {
+            taskContainer.style.display = "block";
         });
+
+        // Hide the task container when clicking outside it
+        document.addEventListener("click", function(event) {
+            if (!taskContainer.contains(event.target) && event.target !== taskAdderButton) {
+                taskContainer.style.display = "none";
+            }
+        });
+
+        const addTaskButton = document.querySelector("#textsbutton");
+        addTaskButton.addEventListener("click", () => {
+            const taskText = document.querySelector("#texts").value.trim();
+            const taskList = document.querySelector("#task-list");
+
+            if (taskText) {
+                const newTask = document.createElement("li");
+                newTask.textContent = taskText;
+
+                const removeButton = document.createElement("button");
+                removeButton.textContent = "Remove";
+                removeButton.classList.add("remove-task");
+
+                // Append the remove button to the task item
+                newTask.appendChild(removeButton);
+                taskList.appendChild(newTask);
+
+                // Clear the input field
+                document.querySelector("#texts").value = "";
+
+                // Add event listener to remove task
+                removeButton.addEventListener("click", (e) => {
+                    const taskItem = e.target.closest("li");
+                    taskItem.remove();
+                });
+
+                // Hide the task container after adding task
+                taskContainer.style.display = "none";
+            } else {
+                alert("Please enter a task!");
+            }
+        });
+
+        // Close button functionality
+        const closeButton = document.querySelector("#exit2");
+        closeButton.addEventListener("click", () => {
+            taskContainer.style.display = "none"; // Hide task container when close button is clicked
+        });
+    });
+
+    const setMyLiterButton = document.querySelector(".value1");
+    setMyLiterButton.addEventListener("click", () => {
+        user = 2;
+        openPopUp();
+    });
+    const setMyLiterButton2 = document.querySelector(".value2");
+    setMyLiterButton2.addEventListener("click", () => {
+        user = 3;
+        openPopUp();
+    });
+    const setMyLiterButton3 = document.querySelector(".value3");
+    setMyLiterButton3.addEventListener("click", () => {
+        user = 4;
+        openPopUp();
+    });
+    const setMyLiterButton4 = document.querySelector(".value4");
+    setMyLiterButton4.addEventListener("click", () => {
+        user = 5;
+        openPopUp();
+    });
+    const setMyLiterButton5 = document.querySelector(".value5");
+    setMyLiterButton5.addEventListener("click", () => {
+        user = 6;
+        openPopUp();
+    });
+    const setMyLiterButton6 = document.querySelector(".value6");
+    setMyLiterButton6.addEventListener("click", () => {
+        user = 7;
+        openPopUp();
+    });
+    const setMyLiterButton7 = document.querySelector(".value7");
+    setMyLiterButton7.addEventListener("click", () => {
+        let response = prompt("How Much Litters Do you want to set?");
+        user = response;
+        openPopUp();
     });
 });
