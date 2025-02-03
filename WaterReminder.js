@@ -13,11 +13,12 @@ function openPopUp() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    function updateclock() {
+document.addEventListener("DOMContentLoaded", function () {
+    // Time Display (Greeting Based on Time of Day)
+    function updateClock() {
         const now = new Date();
         const hours = now.getHours();
-        const currenttime = now.toLocaleString();
+        const currentTime = now.toLocaleString();
         if (hours >= 5 && hours < 12) {
             document.querySelector("#datetime").textContent = "Good Morning";
         } else if (hours >= 12 && hours < 18) {
@@ -26,10 +27,11 @@ document.addEventListener("DOMContentLoaded", function() {
             document.querySelector("#datetime").textContent = "Good Evening";
         }
     }
-    setInterval(updateclock, 1000);
-    updateclock();
 
-    document.addEventListener("DOMContentLoaded", function() {
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Task Popup Functionality
     const taskContainer = document.querySelector("#task");
     const taskAdderButton = document.querySelector("#taskadder");
 
@@ -39,16 +41,17 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Hide the task container when clicking outside it
-    document.addEventListener("click", function(event) {
+    document.addEventListener("click", function (event) {
         if (!taskContainer.contains(event.target) && event.target !== taskAdderButton) {
             taskContainer.style.display = "none";
         }
     });
 
+    // Add Task Button
     const addTaskButton = document.querySelector("#textsbutton");
     addTaskButton.addEventListener("click", () => {
         const taskText = document.querySelector("#texts").value.trim();
-        const taskList = document.querySelector("#task-list");
+        const taskList = document.querySelector("#task ul");
 
         if (taskText) {
             const newTask = document.createElement("li");
@@ -83,11 +86,10 @@ document.addEventListener("DOMContentLoaded", function() {
     closeButton.addEventListener("click", () => {
         taskContainer.style.display = "none"; // Hide task container when close button is clicked
     });
-});
 
-
-    const setMyLiterButton = document.querySelector(".value1");
-    setMyLiterButton.addEventListener("click", () => {
+    // Water Liters Settings (Buttons)
+    const setMyLiterButton1 = document.querySelector(".value1");
+    setMyLiterButton1.addEventListener("click", () => {
         user = 2;
         openPopUp();
     });
@@ -118,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     const setMyLiterButton7 = document.querySelector(".value7");
     setMyLiterButton7.addEventListener("click", () => {
-        let response = prompt("How Much Litters Do you want to set?");
+        let response = prompt("How much liters do you want to set?");
         user = response;
         openPopUp();
     });
