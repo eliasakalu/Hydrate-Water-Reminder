@@ -1,18 +1,3 @@
-var user = 9;
-const litters = [2, 3, 4, 5, 6, 7, user];
-
-function openPopUp() {
-    document.querySelector("#message2").innerHTML = `Hello! You Set ${user} Litter Water! Don't forget to do it today`;
-    document.querySelector('.value8').addEventListener("click", () => {
-        const message = document.querySelector("#sent");
-        message.id = "sent2";
-        const close = document.querySelector("#exit");
-        close.addEventListener("click", () => {
-            message.id = "sent";
-        });
-    });
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     // Time Display (Greeting Based on Time of Day)
     function updateClock() {
@@ -37,13 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Show the task container when the "Add Task" button is clicked
     taskAdderButton.addEventListener("click", () => {
-        taskContainer.style.display = "block";
+        taskContainer.style.display = "block";  // Ensures the task container becomes visible
     });
 
-    // Hide the task container when clicking outside it
+    // Hide the task container when clicking outside of it
     document.addEventListener("click", function (event) {
         if (!taskContainer.contains(event.target) && event.target !== taskAdderButton) {
-            taskContainer.style.display = "none";
+            taskContainer.style.display = "none";  // Hide the task container if clicked outside
         }
     });
 
