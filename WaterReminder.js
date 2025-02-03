@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setInterval(updateclock, 1000);
     updateclock();
 
+    document.addEventListener("DOMContentLoaded", function() {
     const taskContainer = document.querySelector("#task");
     const taskAdderButton = document.querySelector("#taskadder");
 
@@ -47,33 +48,43 @@ document.addEventListener("DOMContentLoaded", function() {
     const addTaskButton = document.querySelector("#textsbutton");
     addTaskButton.addEventListener("click", () => {
         const taskText = document.querySelector("#texts").value.trim();
-        const taskList = document.querySelector("#task ul");
+        const taskList = document.querySelector("#task-list");
 
         if (taskText) {
             const newTask = document.createElement("li");
             newTask.textContent = taskText;
+
             const removeButton = document.createElement("button");
             removeButton.textContent = "Remove";
             removeButton.classList.add("remove-task");
+
+            // Append the remove button to the task item
             newTask.appendChild(removeButton);
             taskList.appendChild(newTask);
+
+            // Clear the input field
             document.querySelector("#texts").value = "";
 
+            // Add event listener to remove task
             removeButton.addEventListener("click", (e) => {
                 const taskItem = e.target.closest("li");
                 taskItem.remove();
             });
 
-            taskContainer.style.display = "none";  // Close task box after adding task
+            // Hide the task container after adding task
+            taskContainer.style.display = "none";
         } else {
             alert("Please enter a task!");
         }
     });
 
+    // Close button functionality
     const closeButton = document.querySelector("#exit2");
     closeButton.addEventListener("click", () => {
-        taskContainer.style.display = "none";  // Hide task container when close button is clicked
+        taskContainer.style.display = "none"; // Hide task container when close button is clicked
     });
+});
+
 
     const setMyLiterButton = document.querySelector(".value1");
     setMyLiterButton.addEventListener("click", () => {
