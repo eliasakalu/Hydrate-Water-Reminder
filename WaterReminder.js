@@ -61,15 +61,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 const taskItem = e.target.closest("li");
                 taskItem.remove();
             });
+
+            taskContainer.style.display = "none";  // Close task box after adding task
         } else {
             alert("Please enter a task!");
         }
+    });
 
-        const taskpopcloser = document.querySelector("#exit2");
-        taskpopcloser.addEventListener("click", () => {
-            taskContainer.style.display = "none";
-            return false;
-        });
+    const closeButton = document.querySelector("#exit2");
+    closeButton.addEventListener("click", () => {
+        taskContainer.style.display = "none";  // Hide task container when close button is clicked
     });
 
     const setMyLiterButton = document.querySelector(".value1");
