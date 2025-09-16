@@ -3,120 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Water Reminder!</title>
+    <title>Hydrate - Water Reminder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="WaterReminder.css">
-    <link rel="shortcut icon" href="bottle-svgrepo-com.svg" type="image/x-icon">
-   <script src="WaterReminder.js"></script>
+    <link rel="shortcut icon" href="/path/to/tint-icon.png" type="image/png">
+    <link rel="shortcut icon" href="./images/bottle-svgrepo-com.svg" type="image/x-icon">
+    <script src="WaterReminder.js"></script>
+    
 </head>
 <body>
-   
-    <div id="First">
-        <video autoplay muted loop plays-inline class="videoclip">
-            <source src="./freecompress-New Project - Made with Clipchamp.mp4" type="video/mp4">
-        </video>
-        <div class="greeter">
-            <div id="Greeter">
-                <h1  data-text="Welcome" >Welcome</h1>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fas fa-tint"></i>
+                <span>Hydrate</span>
             </div>
-            <div id="datetime">
-                <p  data-text="Time">
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#water-options">Water Options</a>
+                <a href="#reminders">Reminders</a>
+                <div class="user-actions">
+                    <div class="user-info" id="user-info">
+                        <div class="user-avatar" id="user-avatar">E</div>
+                        <span id="username">Elias</span>
+                    </div>
+                    <button id="logout-btn" class="btn-outline">Logout</button>
+                    <button id="auth-btn" class="btn">Sign In</button>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-                </p>
+    <!-- Auth Modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-auth-modal">&times;</button>
+            <div class="modal-header">
+                <h3>Account</h3>
+            </div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Sign In</button>
+                <button class="auth-tab" data-tab="register">Sign Up</button>
             </div>
             
-        </div>
-        <a href="#Second">Next</a>
-        <div class="page01">
-            <h1>Your Reminder </h1>
-            <h3>Get Some rest</h3>
-            <div class="fr1"></div>
-            <div class="fr2"></div>
-            <div class="fr3">
-                <button id="taskadder" popovertarget="task">
-                <svg   xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 419 511.67"><path d="M314.98 303.62c57.47 0 104.02 46.59 104.02 104.03 0 57.47-46.58 104.02-104.02 104.02-57.47 0-104.02-46.58-104.02-104.02 0-57.47 46.58-104.03 104.02-104.03zM41.73 59.27h23.93v24.38H41.73c-4.54 0-8.7 1.76-11.8 4.61l-.45.49c-3.14 3.13-5.1 7.48-5.1 12.24v315.53c0 4.75 1.96 9.1 5.1 12.24 3.13 3.15 7.48 5.11 12.25 5.11h142.62c1.68 8.44 4.17 16.6 7.36 24.38H41.73c-11.41 0-21.86-4.71-29.42-12.26C4.72 438.44 0 427.99 0 416.52V100.99c0-11.48 4.7-21.92 12.25-29.47l.79-.72c7.5-7.13 17.62-11.53 28.69-11.53zm297.55 217.37V100.99c0-4.74-1.96-9.09-5.12-12.24-3.11-3.15-7.47-5.1-12.24-5.1h-23.91V59.27h23.91c11.45 0 21.86 4.72 29.42 12.26 7.61 7.56 12.32 18.02 12.32 29.46V283.6c-7.79-3.06-15.95-5.41-24.38-6.96zm-206.75-8.07c-7.13 0-12.92-5.79-12.92-12.92s5.79-12.93 12.92-12.93h142.83c7.13 0 12.92 5.8 12.92 12.93s-5.79 12.92-12.92 12.92H132.53zM89.5 241.22c7.98 0 14.44 6.46 14.44 14.44 0 7.97-6.46 14.43-14.44 14.43-7.97 0-14.44-6.46-14.44-14.43 0-7.98 6.47-14.44 14.44-14.44zm0 78.62c7.98 0 14.44 6.46 14.44 14.44 0 7.97-6.46 14.43-14.44 14.43-7.97 0-14.44-6.46-14.44-14.43 0-7.98 6.47-14.44 14.44-14.44zm43.04 27.35c-7.13 0-12.93-5.79-12.93-12.92s5.8-12.93 12.93-12.93h80.96a133.608 133.608 0 0 0-17.26 25.85h-63.7zM89.5 162.6c7.98 0 14.44 6.46 14.44 14.44 0 7.98-6.46 14.44-14.44 14.44-7.97 0-14.44-6.46-14.44-14.44 0-7.98 6.47-14.44 14.44-14.44zm43.03 27.37c-7.13 0-12.92-5.8-12.92-12.93s5.79-12.92 12.92-12.92h142.83c7.13 0 12.92 5.79 12.92 12.92s-5.79 12.93-12.92 12.93H132.53zM93 39.4h46.13C141.84 17.18 159.77 0 181.52 0c21.62 0 39.45 16.95 42.34 38.94l46.76.46c2.61 0 4.7 2.09 4.7 4.71v51.84c0 2.6-2.09 4.7-4.7 4.7H93.05c-2.56 0-4.71-2.1-4.71-4.7V44.11A4.638 4.638 0 0 1 93 39.4zm88.03-19.25c12.3 0 22.26 9.98 22.26 22.27 0 12.3-9.96 22.26-22.26 22.26-12.29 0-22.26-9.96-22.26-22.26 0-12.29 9.97-22.27 22.26-22.27zm118.39 346.9c-.04-4.59-.46-7.86 5.23-7.79l18.45.23c5.95-.04 7.53 1.86 7.46 7.43v25.16h25.02c4.59-.03 7.86-.46 7.78 5.24l-.22 18.44c.03 5.96-1.86 7.54-7.43 7.48h-25.15v25.14c.07 5.57-1.51 7.46-7.46 7.43l-18.45.22c-5.69.09-5.27-3.2-5.23-7.79v-25h-25.16c-5.59.06-7.47-1.52-7.44-7.48l-.22-18.44c-.09-5.7 3.2-5.27 7.79-5.24h25.03v-25.03z"/></svg>
-                </button>
-               
-            </div>
-        </div>
-        <div popover id="task">
-            <ul>
-               
-            </ul>
-            <form action="">
-                <input id="texts" type="text" placeholder="Enter Your Plan Here!">
-                <input id="textsbutton"type="button" value="Add">
-                <button id="exit2">Close</button>
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <div class="form-message" id="login-message"></div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Sign In</button>
+                </div>
+            </form>
+            
+            <form id="register-form" class="auth-form">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-phone">Phone (for reminders)</label>
+                    <input type="tel" id="register-phone">
+                </div>
+                <div class="form-message" id="register-message"></div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Sign Up</button>
+                </div>
             </form>
         </div>
-        
-        <div class="page001">
-            <div class="frr1">
-                <h1>Betz Website!</h1>
-                <!-- <h2 data-text="Don't Forget To Be Quenched" >Don't Forget To Be Purched</h2> -->
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <video autoplay muted loop plays-inline class="hero-video">
+            <source src="./images/freecompress-New Project - Made with Clipchamp.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="container hero-content">
+            <h1>Stay Hydrated, Stay Healthy</h1>
+            <p>Set daily water intake reminders and track your hydration goals with our easy-to-use water reminder app.</p>
+            <a href="#water-options" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Hydrate?</h2>
+                <p>Stay on top of your hydration goals with our features</p>
             </div>
-            <div class="frr2">
-                <p>
-                    Remember: Water is Life. Each drop counts. Stay hydrated, cherish water, and ensure its cleanliness for future generations.
-                </p>
-                <a id="readmore" href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/water/art-20044256">
-                   <em> Read More </em>
-                </a>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1627483298235-f3bac2567c1c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Reminder Feature">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Smart Reminders</h3>
+                        <p>Get timely notifications to drink water throughout your day based on your schedule.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Tracking Feature">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Progress Tracking</h3>
+                        <p>Monitor your daily water intake and see your hydration trends over time.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Customization Feature">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Customizable Goals</h3>
+                        <p>Set personalized water intake targets based on your body needs and activity level.</p>
+                    </div>
+                </div>
             </div>
-            <div class="frr3"></div>
+        </div>
+    </section>
+
+    <!-- Water Selection Section -->
+    <section id="water-options" class="water-selection">
+        <div class="container">
+            <div class="section-title">
+                <h2>Set Your Water Intake Goal</h2>
+                <p>Choose from standard options or set a custom goal</p>
+            </div>
+            <div class="water-container">
+                <div class="bottle-image">
+                    <img src="./images/rb_26072.png" alt="Water Bottle">
+                </div>
+                <div class="water-options">
+                    <div class="options-grid">
+                        <div class="water-option" data-liters="2">2 Liters</div>
+                        <div class="water-option" data-liters="3">3 Liters</div>
+                        <div class="water-option" data-liters="4">4 Liters</div>
+                        <div class="water-option" data-liters="5">5 Liters</div>
+                        <div class="water-option" data-liters="6">6 Liters</div>
+                        <div class="water-option" data-liters="7">7 Liters</div>
+                        <div class="water-option custom-option">
+                            <p>Custom Amount</p>
+                            <div class="custom-input">
+                                <input type="number" id="custom-liters" placeholder="Enter liters" min="1" max="20">
+                                <button class="btn" id="set-custom">Set</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-accent" id="confirm-goal" style="margin-top: 2rem; width: 100%;">Confirm Daily Goal</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reminder Section -->
+    <section id="reminders" class="reminder-section">
+        <div class="container">
+            <div class="reminder-content">
+                <h2>Set Up Reminders</h2>
+                <p>Receive email or SMS reminders to help you stay on track with your hydration goals.</p>
+                <form class="reminder-form" id="reminder-form">
+                    <input type="email" id="reminder-email" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-accent">Set Reminder</button>
+                </form>
+                <div class="form-message" id="reminder-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Hydrate</h3>
+                    <p>Hydrate helps you maintain optimal hydration throughout your day with smart reminders and tracking.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <div class="creator">
+                        <div class="creator-img">
+                            <img src="./images/cropped-DSC_2765-Photoroom (1).jpg" alt="Elias Akalu" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div>
+                            <h4>Elias Akalu</h4>
+                            <p>Project Developer</p>
+                        </div>
+                    </div>
+                    <a href="mailto:eliasgetachew950@gmail.com" class="btn">Contact Me</a>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <p>Learn more about the importance of hydration:</p>
+                    <a href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/water/art-20044256" class="btn" style="margin-top: 1rem;" target="_blank">Read More</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Hydrate Water Reminder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Task Manager -->
+    <div class="task-manager">
+        <button class="task-btn" id="task-toggle">
+            <i class="fas fa-tasks"></i>
+        </button>
+        <div class="task-panel" id="task-panel">
+            <h3>
+                My Hydration Tasks
+                <button class="close-task" id="close-task">&times;</button>
+            </h3>
+            <ul class="task-list" id="task-list">
+                <!-- Tasks will be added here -->
+            </ul>
+            <form class="task-form" id="task-form">
+                <input type="text" class="task-input" placeholder="Add a task..." required>
+                <button type="submit" class="btn">Add</button>
+            </form>
         </div>
     </div>
-    
-    <div id="Second">
-        <a href="#First">Back</a>
-        <div class="bottle"><img src="rb_26072.png" alt="water" width="600px"></div>
-        
-        <div class="Numbers">
-            <button class="value value1" id="hallo">2 Liters</button>
-            <button class="value value2">3 Liters</button>
-            <button class="value value3">4 Liters</button>
-            <button class="value value4">5 Liters</button>
-            <button class="value value5">6 Liters</button>
-            <button class="value value6">7 Liters</button>
-            <button class="value value7">Custom Liters</button>
-            <button class="value value8" popovertarget="sent">Set my Liter</button>
-           </div>
-        
-    </div>
-    
-    <div class="footer">
-        <div class="founder">
-            <img src="./cropped-DSC_2765-Photoroom (1).jpg" alt="Elias' Picture" width="80px">
-            
+
+    <!-- Goal Confirmation Modal -->
+    <div class="modal" id="goal-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Goal Confirmation</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <p>You've set your daily water goal to: <strong id="goal-amount">2 Liters</strong></p>
+            <p>We'll help you stay on track with reminders throughout your day!</p>
+            <div class="form-actions">
+                <button class="btn" id="cancel-goal">Cancel</button>
+                <button class="btn btn-accent" id="save-goal">Confirm</button>
+            </div>
         </div>
-    <div class="footer_detail">
-        <h2>Elias Akalu</h2>
-        <h3>This Project Builder</h3>
-        <a href="mailto:esmailoumerjemal@gmail.com">Contact Me!</a>
-        </div>
-    </div> 
-    <!-- <div popover id="sent2"></div> -->
-    
-    <div popover id="sent">
-    <form action="https://formsubmit.co/eliasgetachew950@gmail.com" method="POST">
-        <label for="message">Weber Water Reminder:</label>
-        <label for="name"></label>
-        <!-- <input type="text" id="name" name="name" required><br><br> -->
-        <textarea id="message2" name="message" rows="1" >Weber Website</textarea><br><br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required><br><br>
-
-        
-        
-
-        <button type="submit">Send</button>
-        <button type="button" popovertarget="sent" id="exit">Close</button>
-        
-    </form>
     </div>
-    
-     
-    
 
 </body>
 </html>
